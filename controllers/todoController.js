@@ -1,5 +1,5 @@
 const fs = require('fs');
-let { todos, nextId, saveDataToFile } = require('../db.js');
+let { todos, nextId, saveDataToFile } = require('../models/db.js');
 
 const getTodos = (req, res) => {
     res.json(todos);
