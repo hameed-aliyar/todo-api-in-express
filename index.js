@@ -1,7 +1,9 @@
 const express = require('express');
 const morgan = require('morgan');
-const addRequestTime = require('./middleware/addRequestTime.js')
-const todoRoutes = require('./routes/todos.js')
+const addRequestTime = require('./middleware/addRequestTime.js');
+const todoRoutes = require('./routes/todos.js');
+
+require('dotenv').config();
 
 const app = express();
 
@@ -18,7 +20,7 @@ app.get('/', (req, res) => {
     res.send(responseText);
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
     console.log(`Server running on http:/localhost:${PORT}`);
 }); 
