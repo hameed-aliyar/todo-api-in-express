@@ -13,10 +13,5 @@
     "id": 3,
     "text": "Relax this weekend",
     "completed": false
-  },
-  {
-    "id": 4,
-    "text": "Learn Express",
-    "completed": false
   }
 ]

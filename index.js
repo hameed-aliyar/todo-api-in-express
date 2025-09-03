@@ -1,10 +1,14 @@
 const express = require('express');
 const fs = require('fs');
+const morgan = require('morgan');
+const addRequestTime = require('./middleware/addRequestTime.js')
 
 const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+app.use(morgan('dev'));
+app.use(addRequestTime);
 
 let todos;
 try {
@@ -44,7 +48,10 @@ const todoRoutes = createTodoRouter(dbDependencies);
 app.use('/todos', todoRoutes);
 
 app.get('/', (req, res) => {
-    res.send('Welcome to the Express API!');
+    console.log('The request time is : ', req.requestTime);
+    let responseText = 'Welcome to the Express API!';
+    responseText += `\nRequested at : ${req.requestTime}`;
+    res.send(responseText);
 });
 
 app.listen(PORT, () => {
