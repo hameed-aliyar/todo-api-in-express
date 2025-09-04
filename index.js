@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const addRequestTime = require('./middleware/addRequestTime.js');
+const errorHandler = require('./middleware/errorMIddleware.js');
 const todoRoutes = require('./routes/todos.js');
 
 require('dotenv').config();
@@ -19,6 +20,8 @@ app.get('/', (req, res) => {
     responseText += `\nRequested at : ${req.requestTime}`;
     res.send(responseText);
 });
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {

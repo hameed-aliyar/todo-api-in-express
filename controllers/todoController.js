@@ -5,7 +5,7 @@ const getTodos = (req, res) => {
     res.json(todos);
 };
 
-const createTodo = async (req, res) => {
+const createTodo = async (req, res, next) => {
     const newTodoData = req.body;
     if (!newTodoData.text || typeof newTodoData.text !== 'string' || newTodoData.text.trim() === '') {
         return res.status(400).json({ message: 'Validation Error: the "text" field is required and should be a string.' })
