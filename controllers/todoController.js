@@ -1,11 +1,10 @@
-const fs = require('fs');
 let { todos, nextId, saveDataToFile } = require('../models/db.js');
 
 const getTodos = (req, res) => {
     res.json(todos);
 };
 
-const createTodo = async (req, res, next) => {
+const createTodo = async (req, res) => {
     const newTodoData = req.body;
     if (!newTodoData.text || typeof newTodoData.text !== 'string' || newTodoData.text.trim() === '') {
         return res.status(400).json({ message: 'Validation Error: the "text" field is required and should be a string.' })
